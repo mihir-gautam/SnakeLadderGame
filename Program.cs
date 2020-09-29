@@ -10,32 +10,50 @@ namespace SnakeLadderProblem
             const int LADDER = 1;
             const int SNAKE = 2;
             const int START = 0;
-            const int END = 100;
 
             Console.WriteLine("Welcome to snake and ladder program");
-            int ScoreP1 = 0;
-            Console.WriteLine("Game Started, Player 1 is at :" + ScoreP1);
+            
+            Console.WriteLine("Game Started, Player 1 is at : 0");
+            Console.WriteLine("Game Started, Player 2 is at : 0");
+            int ScoreP1 = playerScore();
+            int ScoreP2 = playerScore();
 
-            int currentScore = 0;
-            while (currentScore != 100)
+            if(ScoreP2 > ScoreP1)
             {
-                int newScoreP1 = 0;
-                for (int rollCount = 1; newScoreP1 <100; rollCount++)
-                {
-                    int dieNumber = DieRoll();
-                    Console.WriteLine("Number on the Die : " + dieNumber);
-                    newScoreP1 = nextMove(dieNumber, newScoreP1);
-                    Console.WriteLine("New Score : " + newScoreP1 + "after " + rollCount + "rolls of Die");
-                    if (newScoreP1 == 100)
-                    {
-                        Console.WriteLine("You Won");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Roll the die again");
-                    }
-                }
+                Console.WriteLine("Player 1 won!");
             }
+            else
+            {
+                Console.WriteLine("Player 2 won!");
+            }
+            static int playerScore()
+            {
+                int currentScore = 0;
+                int rollCount = 0;
+                while (currentScore != 100)
+                {
+                    int newScoreP1 = 0;
+                    for (rollCount = 0; newScoreP1 < 100; rollCount++)
+                    {
+                        int dieNumber = DieRoll();
+                        Console.WriteLine("Number on the Die : " + dieNumber);
+                        newScoreP1 = nextMove(dieNumber, newScoreP1);
+                        Console.WriteLine("New Score : " + newScoreP1 + " after " + rollCount + " rolls of Die");
+                        if (newScoreP1 == 100)
+                        {
+                            Console.WriteLine("Victory");
+                        }
+                        else if (newScoreP1 > 100)
+                        {
+                            newScoreP1 = currentScore;
+                            Console.WriteLine("Roll the die again");
+                        }
+                    }
+                    return currentScore;
+                }
+                return rollCount;
+            }
+
             static int DieRoll()
             {
                 Random random = new Random();
