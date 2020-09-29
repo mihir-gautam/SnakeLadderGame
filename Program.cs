@@ -25,7 +25,7 @@ namespace SnakeLadderProblem
                     int dieNumber = DieRoll();
                     Console.WriteLine("Number on the Die : " + dieNumber);
                     newScoreP1 = nextMove(dieNumber, newScoreP1);
-                    Console.WriteLine("New Score : " + newScoreP1);
+                    Console.WriteLine("New Score : " + newScoreP1 + "after " + rollCount + "rolls of Die");
                     if (newScoreP1 == 100)
                     {
                         Console.WriteLine("You Won");
