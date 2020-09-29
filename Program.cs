@@ -15,16 +15,25 @@ namespace SnakeLadderProblem
             Console.WriteLine("Welcome to snake and ladder program");
             int ScoreP1 = 0;
             Console.WriteLine("Game Started, Player 1 is at :" + ScoreP1);
-            int newScoreP1 = 0;
-            for (int rollCount = 1; newScoreP1 >= 0; rollCount++)
+
+            int currentScore = 0;
+            while (currentScore != 100)
             {
-                int dieNumber = DieRoll();
-                Console.WriteLine("Number on the Die : " + dieNumber);
-                newScoreP1 = nextMove(dieNumber, newScoreP1);
-                Console.WriteLine("New Score : " + newScoreP1);
-                if (newScoreP1>=100)
+                int newScoreP1 = 0;
+                for (int rollCount = 1; newScoreP1 <100; rollCount++)
                 {
-                    Console.WriteLine("You Won");
+                    int dieNumber = DieRoll();
+                    Console.WriteLine("Number on the Die : " + dieNumber);
+                    newScoreP1 = nextMove(dieNumber, newScoreP1);
+                    Console.WriteLine("New Score : " + newScoreP1);
+                    if (newScoreP1 == 100)
+                    {
+                        Console.WriteLine("You Won");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Roll the die again");
+                    }
                 }
             }
             static int DieRoll()
